@@ -1,27 +1,37 @@
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0px;
   box-sizing: border-box;
+  font-family: Lexend, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: rgb(36, 26, 15);
   color: #fff;
 }
 
 .section__title {
   font-size: 1.3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   text-align: left;
 }
 
 .hero {
-  background-image: linear-gradient(to top, rgb(36, 26, 15) 0%, rgba(36, 26, 15, 0.6) 100%), url('hero_background.jpg');
+  background-image: linear-gradient(
+      to top,
+      rgb(36, 26, 15) 0%,
+      rgba(36, 26, 15, 0.6) 100%
+    ),
+    url("/static/images/hero_background.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -29,11 +39,11 @@ body {
   justify-content: center;
 }
 
-
 .hero__overlay {
-  padding: 40px;
+  padding: 0 2.5rem;
+  margin-bottom: 5rem;
   text-align: center;
-  max-width: 700px;
+  max-width: 45rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,24 +55,25 @@ body {
   height: 10rem;
 }
 
-.hero__logo {
+.hero__logo,
+.footer__logo {
   width: 100%;
-  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
 }
 
 .hero__title {
-  font-family: 'Anton', sans-serif;
-  font-size: 3em;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .hero__subtitle {
-  font-size: 1.2em;
+  line-height: 1.5;
 }
 
 .hero__button {
   background-color: #ffa500;
-  color: #000;
+  color: #332617;
+  text-decoration: none;
   border: none;
   padding: 10px 20px;
   font-weight: bold;
@@ -70,27 +81,38 @@ body {
   cursor: pointer;
 }
 
-.plans {
-  padding: 8rem 2rem;
+.plans,
+.features {
+  padding: 4rem 2rem;
   text-align: center;
 }
 
-.plans__plans-container {
+.plans__plans-container,
+.features__features-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: 1rem;
 }
 
-.plans-container__plan-card {
+.plans-container__plan-card,
+.features-container__feature {
   text-align: left;
   background-color: #332617;
-  border: 2px solid #694D30;
-  padding: 30px;
+  border: 2px solid #694d30;
+  padding: 2rem;
   border-radius: 10px;
   width: 100%;
   max-width: 24rem;
   position: relative;
+  transition: all 100ms ease-in;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+}
+
+.plans-container__plan-card:hover,
+.features-container__feature:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.5);
 }
 
 .plan-card__title {
@@ -99,7 +121,7 @@ body {
 }
 
 .plan-card__price {
-  margin: 10px 0;
+  margin: 1rem 0;
   font-weight: 900;
 }
 
@@ -115,10 +137,13 @@ body {
 
 .plan-card__feature {
   margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .plan-card__button {
-  background-color: #694D30;
+  background-color: #694d30;
   color: white;
   width: 100%;
   border: none;
@@ -133,30 +158,39 @@ body {
   top: 24px;
   right: 16px;
   background-color: #ffa500;
-  color: #000;
+  color: #332617;
   padding: 5px 10px;
   font-weight: bold;
   border-radius: 5px;
 }
 
-.features {
-  padding: 60px 20px;
-  background-color: rgb(36, 26, 15);
-  text-align: center;
+.features-container__feature {
+  line-height: 1.5;
+  max-width: 20rem;
 }
 
-.features__features-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 600px;
-  margin: auto;
-  font-size: 1.1em;
+.feature__icon-container {
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.feature__icon {
+  width: 100%;
+}
+
+.feature__title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.feature__description {
+  color: #a8a8a8;
 }
 
 .footer {
-  background-image: linear-gradient(to top, black 0%, #241A0F 70%);
-  padding: 20px;
+  background-image: linear-gradient(to top, black 0%, #241a0f 70%);
+  padding: 1.2rem;
   font-size: 0.9em;
   display: flex;
   justify-content: space-evenly;
@@ -172,7 +206,8 @@ body {
 }
 
 .footer__address {
-  color: #A8A8A8;
+  color: #a8a8a8;
+  line-height: 1.5;
 }
 
 .footer__logo-container {
@@ -181,6 +216,22 @@ body {
   max-width: 50%;
 }
 
-.footer__logo {
-  width: 100%;
+@media (min-width: 40rem) {
+  .hero__logo-container {
+    width: 14rem;
+    height: 14rem;
+  }
+
+  .hero__overlay {
+    max-width: 60rem;
+  }
+
+  .hero__title {
+    font-size: 3rem;
+  }
+
+  .hero__subtitle,
+  .hero__button {
+    font-size: 1.2rem;
+  }
 }
