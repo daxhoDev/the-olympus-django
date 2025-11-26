@@ -16,9 +16,9 @@ body {
 }
 
 .section__title {
-  font-size: 1.3rem;
   margin-bottom: 3rem;
-  text-align: left;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .hero {
@@ -53,6 +53,7 @@ body {
 .hero__logo-container {
   width: 10rem;
   height: 10rem;
+  margin-bottom: 2rem;
 }
 
 .hero__logo,
@@ -62,7 +63,7 @@ body {
 }
 
 .hero__title {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   margin-bottom: 2rem;
 }
 
@@ -79,6 +80,12 @@ body {
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 100ms;
+}
+
+.hero__button:hover,
+.hero__button:active {
+  transform: scale(0.95);
 }
 
 .plans,
@@ -151,6 +158,12 @@ body {
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 100ms;
+}
+
+.plan-card__button:hover,
+.plan-card__button:active {
+  transform: scale(0.95);
 }
 
 .plan-card__badge {
@@ -190,7 +203,7 @@ body {
 
 .footer {
   background-image: linear-gradient(to top, black 0%, #241a0f 70%);
-  padding: 1.2rem;
+  padding: 3rem 1.2rem;
   font-size: 0.9em;
   display: flex;
   justify-content: space-evenly;
