@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Olympus Gym</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    {% block content %} {% endblock %}
+    <footer class="footer">
+      <div class="footer__info">
+        <h3 class="footer__title">The Olympus</h3>
+        <p class="footer__address">
+          17 Quantum Fish Street, 3rd Floor, Hazy District, Phantom City
+        </p>
+      </div>
+      <div class="footer__logo-container">
+        <img
+          class="footer__logo"
+          src="{% static 'images/logo.png' %}"
+          alt="The Olympus Logo"
+        />
+      </div>
+    </footer>
+  </body>
+</html>
