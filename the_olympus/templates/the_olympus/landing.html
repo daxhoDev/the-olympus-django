@@ -1,4 +1,14 @@
 {% extends 'the_olympus/_base.html' %} {% load static %} {% block content %}
+<div class="backdrop hidden">
+  <div class="modal">
+    <h2 class="modal__text">Are you sure?</h2>
+    <div class="modal__buttons">
+      <button class="modal__button clickable modal__button--yes">Yes</button>
+      <button class="modal__button clickable modal__button--no">No</button>
+    </div>
+  </div>
+</div>
+
 <section class="hero">
   <div class="hero__overlay">
     <div class="hero__logo-container">
@@ -10,7 +20,7 @@
       facilities and expert guidance.
     </p>
   </div>
-  <a class="hero__button" href="#plans">Explore</a>
+  <a class="hero__button clickable" href="#plans">Explore</a>
 </section>
 
 <section class="plans" id="plans">
@@ -26,7 +36,7 @@
       <p class="plan-card__price">
         <span class="price__number">${{ plan.price }}</span> /month
       </p>
-      <button class="plan-card__button">Get Started</button>
+      <button class="plan-card__button clickable">Get Started</button>
       <ul class="plan-card__features">
         {% for plan_feature in plan.plan_features %}
         <li class="plan-card__feature">
@@ -57,4 +67,5 @@
     {% endfor %}
   </div>
 </section>
+<script src="{% static 'scripts/handleModal.js' %}"></script>
 {% endblock %}
