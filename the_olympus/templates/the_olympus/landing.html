@@ -3,8 +3,10 @@
   <div class="modal">
     <h2 class="modal__text">Are you sure?</h2>
     <div class="modal__buttons">
-      <button class="modal__button clickable modal__button--yes">Yes</button>
-      <button class="modal__button clickable modal__button--no">No</button>
+      <a class="button button--cta clickable" href="{% url 'register' %}"
+        >Yes</a
+      >
+      <button class="button clickable modal__button--no">No</button>
     </div>
   </div>
 </div>
@@ -20,7 +22,7 @@
       facilities and expert guidance.
     </p>
   </div>
-  <a class="hero__button clickable" href="#plans">Explore</a>
+  <a class="button button--cta clickable" href="#plans">Explore</a>
 </section>
 
 <section class="plans" id="plans">
@@ -36,7 +38,7 @@
       <p class="plan-card__price">
         <span class="price__number">${{ plan.price }}</span> /month
       </p>
-      <button class="plan-card__button clickable">Get Started</button>
+      <button class="button plan-card__button clickable">Get Started</button>
       <ul class="plan-card__features">
         {% for plan_feature in plan.plan_features %}
         <li class="plan-card__feature">

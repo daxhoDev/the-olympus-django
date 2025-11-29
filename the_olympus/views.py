@@ -43,4 +43,7 @@ def landing(request):
             },
         ]
     }
-    return render(request, 'the_olympus/landing.html', context)
+    return render(request, 'the_olympus/landing.html', context);
+
+def register(request):
+    return render(request, 'the_olympus/register.html', {})

@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from the_olympus.views import landing
+from the_olympus.views import landing, register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', landing, name='landing')
+    path('', landing, name='landing'),
+    path('register/', register, name='register'),
 ]

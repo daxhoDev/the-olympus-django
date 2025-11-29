@@ -1,14 +1,16 @@
-const planCardButtons = document.querySelectorAll('.plan-card__button');
-const backdrop = document.querySelector('.backdrop')
-const modalButtons = document.querySelectorAll('.modal__button');
+const planCardButtons = document.querySelectorAll(".plan-card__button");
+const backdrop = document.querySelector(".backdrop");
+const modalButtonNo = document.querySelector(".modal__button--no");
 
 function openModal() {
-    backdrop.classList.remove('hidden')
+  backdrop.classList.remove("hidden");
 }
 
 function closeModal() {
-    backdrop.classList.add('hidden')
+  backdrop.classList.add("hidden");
 }
 
-planCardButtons.forEach(button => button.addEventListener('click', openModal))
-modalButtons.forEach(button => button.addEventListener('click', closeModal))
+planCardButtons.forEach((button) =>
+  button.addEventListener("click", openModal)
+);
+modalButtonNo.addEventListener("click", closeModal);
