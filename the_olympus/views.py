@@ -29,7 +29,7 @@ def landing(request):
             {
                 'title': 'State-of-the-Art Equipment',
                 'description': 'Train with the latest machines and technology',
-                'icon': '/dumbell.svg'
+                'icon': '/dumbbell.svg'
             },
             {
                 'title': 'Expert Trainers',
