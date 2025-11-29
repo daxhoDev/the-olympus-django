@@ -7,7 +7,7 @@ def landing(request):
             {
                 'name':'Standard',
                 'price': '49',
-                'features': [
+                'plan_features': [
                     'Access to all gym facilities',
                     'Group fitness classes',
                     'Personalized workout plan'
