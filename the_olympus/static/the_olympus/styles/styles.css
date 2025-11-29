@@ -55,7 +55,7 @@ body {
       rgb(36, 26, 15) 0%,
       rgba(36, 26, 15, 0.6) 100%
     ),
-    url("/static/images/hero_background.jpg");
+    url("/static/the_olympus/images/hero_background.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

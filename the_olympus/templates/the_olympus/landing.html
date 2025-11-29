@@ -14,7 +14,11 @@
 <section class="hero">
   <div class="hero__overlay">
     <div class="hero__logo-container">
-      <img class="hero__logo" src="{% static 'images/logo.png' %}" alt="" />
+      <img
+        class="hero__logo"
+        src="{% static 'the_olympus/images/logo.png' %}"
+        alt=""
+      />
     </div>
     <h1 class="hero__title">Unleash your Inner Titan</h1>
     <p class="hero__subtitle">
@@ -42,7 +46,7 @@
       <ul class="plan-card__features">
         {% for plan_feature in plan.plan_features %}
         <li class="plan-card__feature">
-          <span><img src="{% static 'icons/check.svg' %}" /></span>
+          <span><img src="{% static 'the_olympus/icons/check.svg' %}" /></span>
           <span>{{ plan_feature }}</span>
         </li>
         {% endfor %}
@@ -60,7 +64,7 @@
       <div class="feature__icon-container">
         <img
           class="feature__icon"
-          src="{% static 'icons/' %}{{ feature.icon }}"
+          src="{% static 'the_olympus/icons/' %}{{ feature.icon }}"
         />
       </div>
       <h3 class="feature__title">{{ feature.title }}</h3>
@@ -69,5 +73,5 @@
     {% endfor %}
   </div>
 </section>
-<script src="{% static 'scripts/handleModal.js' %}"></script>
+<script src="{% static 'the_olympus/scripts/handleModal.js' %}"></script>
 {% endblock %}
