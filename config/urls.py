@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from the_olympus.views import index
+from the_olympus.views import landing
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='landing')
+    path('', landing, name='landing')
 ]
