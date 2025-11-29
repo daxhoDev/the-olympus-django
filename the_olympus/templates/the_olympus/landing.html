@@ -30,7 +30,7 @@
   <div class="plans__plans-container">
     {% for plan in plans %}
     <div class="plans-container__plan-card">
-      {% if plan.isPremium %}
+      {% if plan.is_premium %}
       <span class="plan-card__badge">Best Value</span>
       {% endif %}
 

@@ -12,7 +12,7 @@ def landing(request):
                     'Group fitness classes',
                     'Personalized workout plan'
                 ],
-                'isPremium': False
+                'is_premium': False
             },
             {
                 'name':'Premium',
@@ -22,28 +22,28 @@ def landing(request):
                     'Unlimited personal training sessions',
                     'Exclusive wellness resources'
                 ],
-                'isPremium': True
+                'is_premium': True
             }
         ],
         'features': [
             {
                 'title': 'State-of-the-Art Equipment',
                 'description': 'Train with the latest machines and technology',
-                'icon': '/dumbbell.svg'
+                'icon': 'dumbbell.svg'
             },
             {
                 'title': 'Expert Trainers',
                 'description': 'Certified professionals dedicated to your success',
-                'icon': '/users.svg'
+                'icon': 'users.svg'
             },
             {
                 'title': 'Open 24/7',
                 'description': 'Workout anytime, day or night',
-                'icon': '/clock.svg'
+                'icon': 'clock.svg'
             },
         ]
     }
-    return render(request, 'the_olympus/landing.html', context);
+    return render(request, 'the_olympus/landing.html', context)
 
 def register(request):
     return render(request, 'the_olympus/register.html', {})
