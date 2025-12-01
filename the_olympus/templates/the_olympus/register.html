@@ -1,10 +1,38 @@
 {% extends 'the_olympus/_base.html' %} {% block content %}
 
 <section class="under-development">
-  <p>This view is still under development</p>
-  <p>Come back later!</p>
-  <a class="button under-development__button" href="{% url 'landing' %}"
-    >Return</a
-  >
+ <div class="Formulario">
+  <h2 class="registro">User Registration </h2>
+  <form action="procesar_registro.php" method="post">
+    
+
+    <label for="nombre">Full Name:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+    
+
+    <label for="email">Email Address:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+    
+ 
+    <label for="plan">Plan:</label><br>
+    <select id="plan" name="plan" required>
+      <option value="">--Select a plan--</option>
+      <option value="basico">Basic Plan</option>
+      <option value="premium">Premium Plan</option>
+    </select><br><br>
+    
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    
+
+    <label for="confirm_password">Confirm Password:</label><br>
+    <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+    
+
+    <button class="boton" type="submit" href="{% url 'landing' %}">Register</button>
+  </form>
+ </div>
+  
 </section>
 {% endblock %}
