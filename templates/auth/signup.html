@@ -8,63 +8,44 @@
     </p>
   </header>
 
-  <form class="register-form">
-    <label class="register-form__label" for="nombre">Full Name:</label>
-    <input
-      class="register-form__input"
-      type="text"
-      id="nombre"
-      name="nombre"
-      required
-    />
+  <form class="register-form" method="post">
+    {% csrf_token %}
+    
+    <label class="register-form__label" for="{{ form.username.id_for_label }}">Username:</label>
+    {{ form.username }}
+    {% if form.username.errors %}
+      <span class="error">{{ form.username.errors }}</span>
+    {% endif %}
 
-    <label class="register-form__label" for="email">Email Address:</label>
-    <input
-      class="register-form__input"
-      type="email"
-      id="email"
-      name="email"
-      required
-    />
+    <label class="register-form__label" for="{{ form.email.id_for_label }}">Email Address:</label>
+    {{ form.email }}
+    {% if form.email.errors %}
+      <span class="error">{{ form.email.errors }}</span>
+    {% endif %}
 
-    <label class="register-form__label" for="plan">Plan:</label>
-    <select
-      class="register-form__input"
-      type="password"
-      id="plan"
-      name="plan"
-      required
-    >
-      <option value="">--Select a plan--</option>
-      <option value="basico">Basic Plan</option>
-      <option value="premium">Premium Plan</option>
-    </select>
+    <label class="register-form__label" for="{{ form.plan.id_for_label }}">Plan:</label>
+    {{ form.plan }}
+    {% if form.plan.errors %}
+      <span class="error">{{ form.plan.errors }}</span>
+    {% endif %}
 
-    <label class="register-form__label" for="password">Password:</label>
-    <input
-      class="register-form__input"
-      type="password"
-      id="password"
-      name="password"
-      required
-    />
+    <label class="register-form__label" for="{{ form.password1.id_for_label }}">Password:</label>
+    {{ form.password1 }}
+    {% if form.password1.errors %}
+      <span class="error">{{ form.password1.errors }}</span>
+    {% endif %}
 
-    <label class="register-form__label" for="confirm_password"
-      >Confirm Password:</label
-    >
-    <input
-      class="register-form__input"
-      type="password"
-      id="confirm_password"
-      name="confirm_password"
-      required
-    />
+    <label class="register-form__label" for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+    {{ form.password2 }}
+    {% if form.password2.errors %}
+      <span class="error">{{ form.password2.errors }}</span>
+    {% endif %}
 
-    <button
-      class="register-form__button button button--cta"
-      type="submit"
-      href="{% url 'landing' %}"
-    >
+    {% if form.non_field_errors %}
+      <div class="error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <button class="register-form__button button button--cta" type="submit">
       Register
     </button>
   </form>
