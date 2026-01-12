@@ -44,7 +44,7 @@
       </p>
       <button class="button plan-card__button clickable">Get Started</button>
       <ul class="plan-card__features">
-        {% for plan_feature in plan.plan_features %}
+        {% for plan_feature in plan.features %}
         <li class="plan-card__feature">
           <span><img src="{% static 'the_olympus/icons/check.svg' %}" /></span>
           <span>{{ plan_feature }}</span>
