@@ -99,6 +99,12 @@ body {
   line-height: 1.5;
 }
 
+.hero__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .plans,
 .features {
   padding: 4rem 2rem;
@@ -245,6 +251,11 @@ body {
   .hero__subtitle,
   .hero__button {
     font-size: 1.2rem;
+  }
+
+  .hero__buttons {
+    flex-direction: row;
+    gap: 2rem;
   }
 }
 
