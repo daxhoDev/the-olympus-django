@@ -1,0 +1,32 @@
+{% extends 'the_olympus/_base.html' %} {% block content %}
+
+<section class="register">
+  <header class="register__header">
+    <h1 class="header__title">Welcome back!</h1>
+    <p class="header__subtitle">Type your credentials to log in</p>
+  </header>
+
+  <form class="register-form" method="post">
+    {% csrf_token %}
+
+    <label class="register-form__label" for="{{ form.username.id_for_label }}"
+      >Username:</label
+    >
+    {{ form.username }} {% if form.username.errors %}
+    <span class="error">{{ form.username.errors }}</span>
+    {% endif %}
+
+    <label class="register-form__label" for="{{ form.password.id_for_label }}"
+      >Password:</label
+    >
+    {{ form.password }} {% if form.password.errors %}
+    <span class="error">{{ form.password.errors }}</span>
+    {% endif %} {% if form.non_field_errors %}
+    <div class="error">{{ form.non_field_errors }}</div>
+    {% endif %}
+    <button class="register-form__button button button--cta" type="submit">
+      Log In
+    </button>
+  </form>
+</section>
+{% endblock %}

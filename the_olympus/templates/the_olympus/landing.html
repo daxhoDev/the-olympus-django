@@ -3,9 +3,7 @@
   <div class="modal">
     <h2 class="modal__text">Are you sure?</h2>
     <div class="modal__buttons">
-      <a class="button button--cta clickable" href="{% url 'register' %}"
-        >Yes</a
-      >
+      <a class="button button--cta clickable" href="{% url 'signup' %}">Yes</a>
       <button class="button clickable modal__button--no">No</button>
     </div>
   </div>
@@ -26,7 +24,12 @@
       facilities and expert guidance.
     </p>
   </div>
-  <a class="button button--cta clickable" href="#plans">Explore</a>
+  <div class="hero__buttons">
+    <a class="button button--cta clickable" href="#plans">Explore</a>
+    <a class="button button--secondary clickable" href="{% url 'login' %}"
+      >Log In</a
+    >
+  </div>
 </section>
 
 <section class="plans" id="plans">
@@ -44,7 +47,7 @@
       </p>
       <button class="button plan-card__button clickable">Get Started</button>
       <ul class="plan-card__features">
-        {% for plan_feature in plan.plan_features %}
+        {% for plan_feature in plan.features %}
         <li class="plan-card__feature">
           <span><img src="{% static 'the_olympus/icons/check.svg' %}" /></span>
           <span>{{ plan_feature }}</span>

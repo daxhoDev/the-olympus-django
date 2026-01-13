@@ -1,30 +1,11 @@
 from django.shortcuts import render, HttpResponse
 
+from the_olympus.models import Plan
+
 # Create your views here.
 def landing(request):
     context = {
-        'plans': [
-            {
-                'name':'Standard',
-                'price': '49',
-                'plan_features': [
-                    'Access to all gym facilities',
-                    'Group fitness classes',
-                    'Personalized workout plan'
-                ],
-                'is_premium': False
-            },
-            {
-                'name':'Premium',
-                'price': '79',
-                'plan_features': [
-                    'All Standard features',
-                    'Unlimited personal training sessions',
-                    'Exclusive wellness resources'
-                ],
-                'is_premium': True
-            }
-        ],
+        'plans': Plan.objects.all(),
         'features': [
             {
                 'title': 'State-of-the-Art Equipment',
@@ -44,6 +25,3 @@ def landing(request):
         ]
     }
     return render(request, 'the_olympus/landing.html', context)
-
-def register(request):
-    return render(request, 'the_olympus/register.html', {})
