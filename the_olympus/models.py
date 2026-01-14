@@ -10,8 +10,10 @@ class Profile(AbstractUser):
         return self.username
     
     @property
-    def is_admin(self):
-        return self.is_staff or self.is_superuser
+    def role(self):
+        if (self.is_staff or self.is_superuser):
+            return 'admin'
+        return 'user'
 
 class Plan(models.Model):
     name = models.CharField(max_length=20)

@@ -25,3 +25,6 @@ def landing(request):
         ]
     }
     return render(request, 'the_olympus/landing.html', context)
+
+def user_dashboard(request):
+    return render(request, 'the_olympus/user_dashboard.html')

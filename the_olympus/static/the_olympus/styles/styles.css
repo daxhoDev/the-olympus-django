@@ -366,3 +366,52 @@ body {
   margin-top: 2rem;
   width: 100%;
 }
+
+.user-header {
+  margin: 2rem min(3vw, 2rem) 2rem min(3vw, 2rem);
+}
+
+.user-header__message {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.active-plan {
+  border-radius: 16px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 max(3vw, 2rem);
+  max-width: 30rem;
+  padding: 4rem 2rem;
+  background: linear-gradient(to top right, #694d30 0%, #332617 60%);
+}
+
+.active-plan__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.active-plan__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.active-plan__price {
+  font-size: 1rem;
+  color: #ffe7ba;
+}
+
+.active-plan__details {
+  line-height: 2;
+  color: #ffe7ba;
+}
+
+.active-plan__type {
+  color: white;
+}

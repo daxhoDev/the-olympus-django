@@ -21,8 +21,8 @@ from config.views import SignupView, CustomLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', landing, name='landing'),
     path('signup/', SignupView.as_view(), name='signup'),
     path('accounts/login/', CustomLoginView.as_view(), name='login'),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('the_olympus.urls')),
 ]
