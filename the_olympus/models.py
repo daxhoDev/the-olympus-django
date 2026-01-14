@@ -4,16 +4,10 @@ from django.contrib.auth.models import AbstractUser
 class Profile(AbstractUser):
     
     plan = models.ForeignKey('Plan', on_delete=models.CASCADE, null=True, blank=True)
-    role = models.CharField(max_length=20, choices=[('user', 'User'), ('admin', 'Admin')], default='member')
+    role = models.CharField(max_length=20, choices=[('user', 'User'), ('admin', 'Admin')], default='user')
     
     def __str__(self):
         return self.username
-    
-    @property
-    def role(self):
-        if (self.is_staff or self.is_superuser):
-            return 'admin'
-        return 'user'
 
 class Plan(models.Model):
     name = models.CharField(max_length=20)
