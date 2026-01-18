@@ -13,4 +13,9 @@ class SignupView(CreateView):
 class CustomLoginView(LoginView):
 	template_name = 'registration/login.html'
 	authentication_form = LoginForm
-	success_url = reverse_lazy('dashboard')
+
+	def get_success_url(self):
+		if self.request.user.is_superuser:
+			return reverse_lazy('admin_dashboard')
+		else:
+			return reverse_lazy('dashboard')

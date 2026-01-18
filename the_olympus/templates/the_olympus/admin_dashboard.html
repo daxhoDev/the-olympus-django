@@ -1,0 +1,52 @@
+{% extends 'the_olympus/_base.html' %} {% block content %}
+
+<main class="panel-container">
+  <div class="panel">
+    <header class="panel__encabezado">
+      <h1 class="panel__titulo">Panel de administración</h1>
+      <p class="panel__subtitulo">The Olimpus Gym</p>
+    </header>
+
+    <section class="panel__tarjeta tarjeta">
+      <h2 class="tarjeta__titulo">Usuarios</h2>
+
+      <div class="tarjeta__tabla-contenedor">
+        <table class="tabla">
+          <thead class="tabla__encabezado">
+            <tr class="tabla__fila">
+              <th class="tablacelda tablacelda--encabezado">ID</th>
+              <th class="tablacelda tablacelda--encabezado">Nombre</th>
+              <th class="tablacelda tablacelda--encabezado">Email</th>
+              <th class="tablacelda tablacelda--encabezado">Plan</th>
+            </tr>
+          </thead>
+          <tbody class="tabla__cuerpo">
+            {% for profile in profiles %} {% if not profile.is_superuser %}
+            <tr class="tabla__fila">
+              <td class="tabla__celda">{{ profile.id }}</td>
+              <td class="tablacelda tablacelda--negrita">
+                {{ profile.username }}
+              </td>
+              <td class="tabla__celda">{{ profile.email }}</td>
+              <td class="tabla__celda">
+                <span class="etiqueta etiqueta--{{ profile.plan.name|lower }}"
+                  >{{ profile.plan.name }}</span
+                >
+              </td>
+            </tr>
+
+            {% endif %} {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="panel__acciones">
+      <button class="boton">
+        <span class="boton__icono">+</span>
+        Invitar
+      </button>
+    </div>
+  </div>
+</main>
+{% endblock %}

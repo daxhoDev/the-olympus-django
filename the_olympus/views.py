@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
-
-from the_olympus.models import Plan
+from django.views.generic import ListView
+from the_olympus.models import Plan, Profile
+from django.contrib.auth.models import User
 
 # Create your views here.
 def landing(request):
@@ -28,3 +29,8 @@ def landing(request):
 
 def user_dashboard(request):
     return render(request, 'the_olympus/user_dashboard.html')
+
+class ProfilesListView(ListView):
+    model = Profile
+    template_name = 'the_olympus/admin_dashboard.html'
+    context_object_name = 'profiles'
