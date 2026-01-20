@@ -399,24 +399,50 @@ body {
   font-weight: bold;
 }
 
-.active-plan {
+.cards-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* CARD COMPONENT - Reusable card component */
+.card {
   border: 2px solid #694d30;
   border-radius: 10px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   margin: 0 max(3vw, 2rem);
   max-width: 30rem;
-  padding: 4rem 2rem;
+  padding: 2rem;
   background: #332617;
+  display: flex;
+  flex-direction: column;
 }
 
-.active-plan__header {
+.card--count {
+  margin: 0;
+}
+
+.card--plan {
+  padding: 4rem 2rem;
+}
+
+.card__header {
   display: flex;
   gap: 1rem;
   align-items: center;
   margin-bottom: 1.5rem;
 }
 
-.active-plan__title {
+.card__header--plan {
+  margin-bottom: 0.7rem;
+}
+
+.card__icon {
+  flex-shrink: 0;
+}
+
+.card__title {
   font-size: 1.2rem;
   font-weight: bold;
   width: 100%;
@@ -427,37 +453,52 @@ body {
   gap: 0.5rem;
 }
 
-.active-plan__price {
-  font-size: 0.8rem;
-  color: #ffe7ba;
-}
-
-.active-plan__details {
-  line-height: 2;
-  color: #ffe7ba;
-  font-size: 0.8rem;
-}
-
-.active-plan__type {
+.card__title-text {
   color: white;
 }
 
-.active-plan__button {
-  width: 100%;
+.card__price {
+  font-size: 0.8rem;
+  color: #ffe7ba;
+}
+
+.card__body {
+  line-height: 2;
+  color: #ffe7ba;
+  font-size: 0.8rem;
+  flex: 1;
+}
+
+.card__info {
+  margin: 0;
+  padding: 0;
+}
+
+.card__info--count {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.card__footer {
   margin-top: 2rem;
 }
 
+.card__button {
+  width: 100%;
+}
+
 @media (min-width: 40rem) {
-  .active-plan__title {
+  .card__title {
     flex-direction: row;
     font-size: 1.5rem;
   }
 
-  .active-plan__price {
+  .card__price {
     font-size: 1rem;
   }
 
-  .active-plan__details {
+  .card__body {
     font-size: 1rem;
   }
 }

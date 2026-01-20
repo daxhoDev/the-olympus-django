@@ -3,19 +3,43 @@
 <main class="panel-container">
   <div class="panel">
     <header class="panel__encabezado">
-      <h1 class="panel__titulo">Panel de administración</h1>
-      <p class="panel__subtitulo">The Olimpus Gym</p>
+      <h1 class="panel__titulo">Admin dashboard</h1>
+      <p class="panel__subtitulo">The Olympus Gym</p>
     </header>
 
+    <div class="cards-container">
+      <section class="card card--count">
+        <header class="card__header card__header--plan">
+          <h2 class="card__title">
+            <span class="card__title-text">Standard users</span>
+          </h2>
+        </header>
+        <div class="card__body">
+          <p class="card__info card__info--count">{{ standard_users_count }}</p>
+        </div>
+      </section>
+
+      <section class="card card--count">
+        <header class="card__header card__header--plan">
+          <h2 class="card__title">
+            <span class="card__title-text">Premium users</span>
+          </h2>
+        </header>
+        <div class="card__body">
+          <p class="card__info card__info--count">{{ premium_users_count }}</p>
+        </div>
+      </section>
+    </div>
+
     <section class="panel__tarjeta tarjeta">
-      <h2 class="tarjeta__titulo">Usuarios</h2>
+      <h2 class="tarjeta__titulo">Users</h2>
 
       <div class="tarjeta__tabla-contenedor">
         <table class="tabla">
           <thead class="tabla__encabezado">
             <tr class="tabla__fila">
               <th class="tablacelda tablacelda--encabezado">ID</th>
-              <th class="tablacelda tablacelda--encabezado">Nombre</th>
+              <th class="tablacelda tablacelda--encabezado">Name</th>
               <th class="tablacelda tablacelda--encabezado">Email</th>
               <th class="tablacelda tablacelda--encabezado">Plan</th>
             </tr>
@@ -33,6 +57,11 @@
                   >{{ profile.plan.name }}</span
                 >
               </td>
+              <td class="tabla__celda">
+                <button class="button clickable button--danger">
+                  Delete user
+                </button>
+              </td>
             </tr>
 
             {% endif %} {% endfor %}
@@ -42,9 +71,9 @@
     </section>
 
     <div class="panel__acciones">
-      <button class="boton">
+      <button class="button clickable button--cta">
         <span class="boton__icono">+</span>
-        Invitar
+        Invite New User
       </button>
     </div>
   </div>

@@ -1,7 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from django.views.generic import ListView
 from the_olympus.models import Plan, Profile
-from django.contrib.auth.models import User
 
 # Create your views here.
 def landing(request):
@@ -34,3 +33,17 @@ class ProfilesListView(ListView):
     model = Profile
     template_name = 'the_olympus/admin_dashboard.html'
     context_object_name = 'profiles'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Contar usuarios premium (excluyendo superusuarios y usuarios eliminados)
+        context['premium_users_count'] = Profile.objects.filter(
+            plan__is_premium=True,
+            is_superuser=False,
+        ).count()
+        context['standard_users_count'] = Profile.objects.filter(
+            plan__is_premium=False,
+            is_superuser=False,
+        ).count()
+
+        return context
