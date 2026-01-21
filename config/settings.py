@@ -143,6 +143,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # O tu servidor SMTP
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+EMAIL_TIMEOUT = 10  # Timeout de 10 segundos para evitar bloqueos
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')  # Tu correo
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')  # Tu contraseña o app password
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@olympus.com')
