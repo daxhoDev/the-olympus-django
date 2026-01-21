@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DeleteView, CreateView
 from the_olympus.models import Invitation, Plan, Profile
 from the_olympus.forms import InvitationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 def landing(request):
@@ -95,5 +97,33 @@ class CreateInvitation(CreateView):
     success_url = reverse_lazy('admin_dashboard')
 
     def form_valid(self, form):
-        # Aquí podrías agregar lógica para enviar el correo con la invitación
-        return super().form_valid(form) 
+        response = super().form_valid(form)
+        
+        # Enviar correo de invitación
+        invitation = self.object
+        signup_url = self.request.build_absolute_uri(
+            reverse('signup_with_token', kwargs={'token': invitation.token})
+        )
+        
+        subject = 'You have been invited to The Olympus'
+        message = f'''
+Hello,
+
+You have been invited to join The Olympus as a {invitation.get_role_display()}.
+
+Please click the following link to complete your registration:
+{signup_url}
+
+Best regards,
+The Olympus Team
+        '''
+        
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [invitation.email],
+            fail_silently=False,
+        )
+        
+        return response 
