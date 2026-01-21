@@ -1,3 +1,4 @@
+
 from config.forms import LoginForm, ProfileCreationForm
 from the_olympus.models import Profile
 from django.views.generic import CreateView
@@ -16,6 +17,8 @@ class SignupView(CreateView):
 		kwargs = super().get_form_kwargs()
 		token = self.kwargs.get('token')
 		if token:
+			# Verificar que la invitación existe y está activa, sino lanzar 404
+			get_object_or_404(Invitation, token=token, is_active=True)
 			kwargs['token'] = token
 		return kwargs
 
@@ -23,12 +26,8 @@ class SignupView(CreateView):
 		context = super().get_context_data(**kwargs)
 		token = self.kwargs.get('token')
 		if token:
-			try:
-				invitation = Invitation.objects.get(token=token, is_active=True)
-				context['invitation'] = invitation
-			except Invitation.DoesNotExist:
-				context['invitation'] = None
-				get_object_or_404(Invitation, token=token)
+			invitation = get_object_or_404(Invitation, token=token, is_active=True)
+			context['invitation'] = invitation
 		return context
 
 	
