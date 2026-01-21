@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import uuid
 
 class Profile(AbstractUser):
     
@@ -32,3 +33,15 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'Payment of ${self.amount} by {self.profile.username} on {self.payment_date}'
+    
+class Invitation(models.Model):
+    email = models.EmailField()
+    token = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return f'Invitation to {self.email}'
+    
+    def save(self, *args, **kwargs):
+        if not self.token:
+            self.token = str(uuid.uuid4())
+        super().save(*args, **kwargs)
