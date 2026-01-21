@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView
-from the_olympus.models import Plan, Profile
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DeleteView, CreateView
+from the_olympus.models import Invitation, Plan, Profile
+from the_olympus.forms import InvitationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.utils import timezone
@@ -85,3 +87,13 @@ def delete_user(request, user_id):
     user.save()
     
     return redirect('admin_dashboard')
+
+class CreateInvitation(CreateView):
+    model = Invitation
+    form_class = InvitationForm
+    template_name = 'the_olympus/create_invitation.html'
+    success_url = reverse_lazy('admin_dashboard')
+
+    def form_valid(self, form):
+        # Aquí podrías agregar lógica para enviar el correo con la invitación
+        return super().form_valid(form) 

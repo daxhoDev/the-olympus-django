@@ -87,10 +87,12 @@
     </section>
 
     <div class="panel__acciones">
-      <button class="button clickable button--cta">
-        <span class="boton__icono">+</span>
-        Invite New User
-      </button>
+      <a href="{% url 'create_invitation' %}">
+        <button class="button clickable button--cta">
+          <span class="boton__icono">+</span>
+          Invite New User
+        </button>
+      </a>
     </div>
   </div>
 </main>
