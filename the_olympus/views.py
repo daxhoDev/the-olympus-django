@@ -118,12 +118,23 @@ Best regards,
 The Olympus Team
         '''
         
-        send_mail(
-            subject,
-            message,
-            settings.DEFAULT_FROM_EMAIL,
-            [invitation.email],
-            fail_silently=False,
-        )
+        try:
+            # Verificar que las credenciales de email estén configuradas
+            if settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD:
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [invitation.email],
+                    fail_silently=True,  # No bloquear si falla el email
+                )
+            else:
+                # Si no hay credenciales, solo imprimir en consola
+                print(f'Email no enviado (credenciales no configuradas): {invitation.email}')
+                print(f'URL de invitación: {signup_url}')
+        except Exception as e:
+            # Log del error pero no crashear la aplicación
+            print(f'Error al enviar email: {e}')
+            print(f'URL de invitación para {invitation.email}: {signup_url}')
         
         return response 
