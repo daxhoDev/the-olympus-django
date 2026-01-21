@@ -3,13 +3,32 @@ from the_olympus.models import Profile
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
+from the_olympus.models import Invitation
 
 class SignupView(CreateView):
 	model = Profile
 	form_class = ProfileCreationForm
 	success_url = reverse_lazy('login')
 	template_name = 'registration/signup.html'
-	
+
+	def get_form_kwargs(self):
+		kwargs = super().get_form_kwargs()
+		token = self.kwargs.get('token')
+		if token:
+			kwargs['token'] = token
+		return kwargs
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		token = self.kwargs.get('token')
+		if token:
+			try:
+				invitation = Invitation.objects.get(token=token)
+				context['invitation'] = invitation
+			except Invitation.DoesNotExist:
+				context['invitation'] = None
+		return context
+
 
 class CustomLoginView(LoginView):
 	template_name = 'registration/login.html'

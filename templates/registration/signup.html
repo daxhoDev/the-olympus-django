@@ -23,14 +23,21 @@
     >
     {{ form.email }} {% if form.email.errors %}
     <span class="error">{{ form.email.errors }}</span>
-    {% endif %}
-
+    {% endif %} {% if form.plan %}
     <label class="register-form__label" for="{{ form.plan.id_for_label }}"
       >Plan:</label
     >
     {{ form.plan }} {% if form.plan.errors %}
     <span class="error">{{ form.plan.errors }}</span>
-    {% endif %}
+    {% endif %} {% endif %} {% if form.bank_account %}
+    <label
+      class="register-form__label"
+      for="{{ form.bank_account.id_for_label }}"
+      >Bank Account:</label
+    >
+    {{ form.bank_account }} {% if form.bank_account.errors %}
+    <span class="error">{{ form.bank_account.errors }}</span>
+    {% endif %} {% endif %}
 
     <label class="register-form__label" for="{{ form.password1.id_for_label }}"
       >Password:</label

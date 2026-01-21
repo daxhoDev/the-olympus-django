@@ -7,6 +7,7 @@ class Profile(AbstractUser):
     plan = models.ForeignKey('Plan', on_delete=models.CASCADE, null=True, blank=True)
     role = models.CharField(max_length=20, choices=[('user', 'User'), ('admin', 'Admin')], default='user')
     deleted_at = models.DateTimeField(null=True, blank=True)
+    bank_account = models.CharField(max_length=30, null=False, blank=False)
     
     def __str__(self):
         return self.username
@@ -37,6 +38,7 @@ class Payment(models.Model):
 class Invitation(models.Model):
     email = models.EmailField()
     token = models.CharField(max_length=100, unique=True)
+    role = models.CharField(max_length=20, choices=[('user', 'User'), ('admin', 'Admin')], default='user')
 
     def __str__(self):
         return f'Invitation to {self.email}'

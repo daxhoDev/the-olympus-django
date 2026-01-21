@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
-from the_olympus.models import Profile, Plan
+from the_olympus.models import Profile, Plan, Invitation
 
 class ProfileCreationForm(UserCreationForm):
 	email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'register-form__input'}))
@@ -10,18 +10,42 @@ class ProfileCreationForm(UserCreationForm):
 		empty_label="--Select a plan--",
 		widget=forms.Select(attrs={'class': 'register-form__input'})
 	)
+
+	bank_account = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'register-form__input'}))
 	
 	class Meta:
 		model = Profile
-		fields = ['username', 'email', 'plan', 'password1', 'password2']
+		fields = ['username', 'email', 'plan', 'bank_account' , 'password1', 'password2']
 		widgets = {
 			'username': forms.TextInput(attrs={'class': 'register-form__input'}),
 		}
 	
 	def __init__(self, *args, **kwargs):
+		self.token = kwargs.pop('token', None)
 		super().__init__(*args, **kwargs)
 		self.fields['password1'].widget.attrs.update({'class': 'register-form__input'})
 		self.fields['password2'].widget.attrs.update({'class': 'register-form__input'})
+		
+		# Si hay un token, verificar el role de la invitación
+		if self.token:
+			try:
+				invitation = Invitation.objects.get(token=self.token)
+				if invitation.role == 'admin':
+					# Para admin, ocultar bank_account y plan
+					del self.fields['bank_account']
+					del self.fields['plan']
+				else:
+					# Para user, bank_account y plan son requeridos
+					self.fields['bank_account'].required = True
+					self.fields['plan'].required = True
+			except Invitation.DoesNotExist:
+				# Si no existe la invitación, mostrar los campos requeridos
+				self.fields['bank_account'].required = True
+				self.fields['plan'].required = True
+		else:
+			# Sin token, mostrar los campos requeridos
+			self.fields['bank_account'].required = True
+			self.fields['plan'].required = True
 
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
