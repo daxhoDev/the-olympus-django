@@ -31,6 +31,11 @@ class ProfileCreationForm(UserCreationForm):
 			try:
 				invitation = Invitation.objects.get(token=self.token)
 				self.invitation_role = invitation.role
+				
+				# Pre-llenar el email y hacerlo readonly
+				self.fields['email'].initial = invitation.email
+				self.fields['email'].widget.attrs['readonly'] = True
+				
 				if invitation.role == 'admin':
 					# Para admin, ocultar bank_account y plan
 					del self.fields['bank_account']
