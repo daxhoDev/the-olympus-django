@@ -64,6 +64,14 @@ class ProfileCreationForm(UserCreationForm):
 		
 		if commit:
 			user.save()
+			# Marcar la invitación como inactiva si se usó un token
+			if self.token:
+				try:
+					invitation = Invitation.objects.get(token=self.token)
+					invitation.is_active = False
+					invitation.save()
+				except Invitation.DoesNotExist:
+					pass
 		return user
 
 class LoginForm(AuthenticationForm):

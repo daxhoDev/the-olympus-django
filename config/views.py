@@ -1,9 +1,10 @@
 from config.forms import LoginForm, ProfileCreationForm
 from the_olympus.models import Profile
 from django.views.generic import CreateView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.views import LoginView
 from the_olympus.models import Invitation
+from django.shortcuts import get_object_or_404
 
 class SignupView(CreateView):
 	model = Profile
@@ -23,13 +24,14 @@ class SignupView(CreateView):
 		token = self.kwargs.get('token')
 		if token:
 			try:
-				invitation = Invitation.objects.get(token=token)
+				invitation = Invitation.objects.get(token=token, is_active=True)
 				context['invitation'] = invitation
 			except Invitation.DoesNotExist:
 				context['invitation'] = None
+				get_object_or_404(Invitation, token=token)
 		return context
 
-
+	
 class CustomLoginView(LoginView):
 	template_name = 'registration/login.html'
 	authentication_form = LoginForm
