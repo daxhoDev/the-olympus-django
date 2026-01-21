@@ -1,4 +1,17 @@
-{% extends 'the_olympus/_base.html' %} {% block content %}
+{% extends 'the_olympus/_base.html' %} {% load static %} {% block content %}
+
+<div class="backdrop hidden">
+  <div class="modal modal--delete-user">
+    <h2 class="modal__text">Are you sure to delete this user?</h2>
+    <div class="modal__buttons">
+      <form id="deleteUserForm" method="post" action="">
+        {% csrf_token %}
+        <button type="submit" class="button button--cta clickable">Yes</button>
+      </form>
+      <button class="button clickable modal__button--no">No</button>
+    </div>
+  </div>
+</div>
 
 <main class="panel-container">
   <div class="panel">
@@ -58,7 +71,10 @@
                 >
               </td>
               <td class="tabla__celda">
-                <button class="button clickable button--danger">
+                <button
+                  class="button button--delete-user clickable button--danger"
+                  data-user-id="{{ profile.id }}"
+                >
                   Delete user
                 </button>
               </td>
@@ -78,4 +94,5 @@
     </div>
   </div>
 </main>
+<script src="{% static 'the_olympus/scripts/handleDeleteUserModal.js' %}"></script>
 {% endblock %}
