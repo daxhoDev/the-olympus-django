@@ -1,0 +1,32 @@
+{% extends 'the_olympus/_base.html' %} {% block content %}
+<section class="register">
+  <header class="register__header">
+    <h1 class="header__title">Create Invitation</h1>
+    <p class="header__subtitle">Send an invitation to a new user</p>
+  </header>
+
+  <form class="register-form" method="post">
+    {% csrf_token %}
+
+    <label class="register-form__label" for="{{ form.email.id_for_label }}">
+      Email Address:
+    </label>
+    {{ form.email }} {% if form.email.errors %}
+    <span class="error">{{ form.email.errors }}</span>
+    {% endif %}
+
+    <label class="register-form__label" for="{{ form.role.id_for_label }}">
+      Role:
+    </label>
+    {{ form.role }} {% if form.role.errors %}
+    <span class="error">{{ form.role.errors }}</span>
+    {% endif %} {% if form.non_field_errors %}
+    <div class="error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <button class="register-form__button button button--cta" type="submit">
+      Send Invitation
+    </button>
+  </form>
+</section>
+{% endblock %}

@@ -1,3 +1,22 @@
+:root {
+  --color-naranja: #ffa500;
+  --color-fondo: #332617;
+  --color-marron: #241a0f;
+  --color-negro: #00000088;
+  --color-gris: #a8a8a8;
+  --color-borde: #694d30;
+  --color-blanco: white;
+
+  --color-verde: #abfac8;
+  --color-azul: #a4bfec;
+  --color-amarillo: #e9d481;
+
+  --radio: 14px;
+  --sombra: 0 8px 20px rgba(0, 0, 0, 0.05);
+
+  --fuente: "Segoe UI", system-ui, sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -10,7 +29,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "Segoe UI", system-ui, sans-serif;
   background-color: rgb(36, 26, 15);
   color: #fff;
   min-height: 100vh;
@@ -50,11 +69,8 @@ body {
 }
 
 .hero {
-  background-image: linear-gradient(
-      to top,
-      rgb(36, 26, 15) 0%,
-      rgba(36, 26, 15, 0.6) 100%
-    ),
+  background-image:
+    linear-gradient(to top, rgb(36, 26, 15) 0%, rgba(36, 26, 15, 0.6) 100%),
     url("/static/the_olympus/images/hero_background.jpg");
   background-position: center;
   background-size: cover;
@@ -97,6 +113,12 @@ body {
 
 .hero__subtitle {
   line-height: 1.5;
+}
+
+.hero__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .plans,
@@ -246,6 +268,11 @@ body {
   .hero__button {
     font-size: 1.2rem;
   }
+
+  .hero__buttons {
+    flex-direction: row;
+    gap: 2rem;
+  }
 }
 
 .backdrop {
@@ -354,4 +381,276 @@ body {
 .register-form__button {
   margin-top: 2rem;
   width: 100%;
+}
+
+.user-header {
+  margin: 2rem min(3vw, 2rem) 2rem min(3vw, 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-header__logout-form {
+  display: inline-block;
+}
+
+.user-header__message {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* CARD COMPONENT - Reusable card component */
+.card {
+  border: 2px solid #694d30;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 max(3vw, 2rem);
+  max-width: 30rem;
+  padding: 2rem;
+  background: #332617;
+  display: flex;
+  flex-direction: column;
+}
+
+.card--count {
+  margin: 0;
+}
+
+.card--plan {
+  padding: 4rem 2rem;
+}
+
+.card__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.card__header--plan {
+  margin-bottom: 0.7rem;
+}
+
+.card__icon {
+  flex-shrink: 0;
+}
+
+.card__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.card__title-text {
+  color: white;
+}
+
+.card__price {
+  font-size: 0.8rem;
+  color: #ffe7ba;
+}
+
+.card__body {
+  line-height: 2;
+  color: #ffe7ba;
+  font-size: 0.8rem;
+  flex: 1;
+}
+
+.card__info {
+  margin: 0;
+  padding: 0;
+}
+
+.card__info--count {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.card__footer {
+  margin-top: 2rem;
+}
+
+.card__button {
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .card__title {
+    flex-direction: row;
+    font-size: 1.5rem;
+  }
+
+  .card__price {
+    font-size: 1rem;
+  }
+
+  .card__body {
+    font-size: 1rem;
+  }
+}
+
+/* ADMIN PANEL */
+.panel-container {
+  padding-block: 2rem;
+  padding-inline: 10vw;
+}
+
+.panel {
+  margin: 2rem min(3vw, 2rem) 2rem min(3vw, 2rem);
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+.panel__encabezado {
+  margin-bottom: 2rem;
+}
+
+.panel__titulo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-blanco);
+}
+
+.panel__subtitulo {
+  font-size: 15px;
+  color: var(--color-gris);
+  margin-top: 4px;
+}
+
+/* =========================
+   TARJETA
+========================= */
+.tarjeta {
+  background-color: var(--color-fondo);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 20px;
+  box-shadow: var(--sombra);
+}
+
+.tarjeta__titulo {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--color-blanco);
+}
+
+.tarjeta__tabla-contenedor {
+  overflow-x: auto;
+}
+
+/* =========================
+   TABLA
+========================= */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--color-blanco);
+}
+
+.tabla__fila {
+  border-bottom: 1px solid var(--color-blanco);
+  text-align: left;
+}
+
+.tabla__fila:last-child {
+  border-bottom: none;
+}
+
+.tabla__celda {
+  padding: 12px 4px;
+  font-size: 14px;
+  color: var(--color-blanco);
+  text-align: left;
+}
+
+.tabla__celda--encabezado {
+  font-weight: 600;
+  color: var(--color-gris);
+  padding-bottom: 10px;
+}
+
+.tabla__celda--negrita {
+  font-weight: 600;
+}
+
+/* =========================
+   ETIQUETAS (PLAN)
+========================= */
+.etiqueta {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.etiqueta--premium {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: var(--color-verde);
+}
+
+.etiqueta--heroe {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: var(--color-azul);
+}
+
+.etiqueta--standard {
+  background-color: rgba(250, 204, 21, 0.25);
+  color: #e9b66e;
+}
+
+/* =========================
+   ACCIONES
+========================= */
+.panel__acciones {
+  margin-top: 24px;
+}
+
+/* =========================
+   BOTÓN
+========================= */
+.boton {
+  width: 100%;
+  background-color: var(--color-naranja);
+  color: var(--color-marron);
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 16px rgba(255, 165, 0, 0.35);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 165, 0, 0.45);
+}
+
+.boton__icono {
+  font-size: 20px;
+  line-height: 1;
 }

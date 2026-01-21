@@ -1,6 +1,6 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,7 +17,22 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+    {% if user.is_authenticated %}
+    <nav class="user-header">
+      <h1 class="user-header__message">
+        👋 Welcome {{ user.username }}! You are logged as {{ user.role }}
+      </h1>
+      <form
+        class="user-header__logout-form"
+        method="post"
+        action="{% url 'logout' %}"
+      >
+        {% csrf_token %}
+        <button class="button button--secondary">Logout</button>
+      </form>
+    </nav>
+    {% endif %}
+    <!----> 
     {% block content %} {% endblock %}
     <footer class="footer">
       <div class="footer__info">

@@ -1,0 +1,100 @@
+{% extends 'the_olympus/_base.html' %} {% load static %} {% block content %}
+
+<div class="backdrop hidden">
+  <div class="modal modal--delete-user">
+    <h2 class="modal__text">Are you sure to delete this user?</h2>
+    <div class="modal__buttons">
+      <form id="deleteUserForm" method="post" action="">
+        {% csrf_token %}
+        <button type="submit" class="button button--cta clickable">Yes</button>
+      </form>
+      <button class="button clickable modal__button--no">No</button>
+    </div>
+  </div>
+</div>
+
+<main class="panel-container">
+  <div class="panel">
+    <header class="panel__encabezado">
+      <h1 class="panel__titulo">Admin dashboard</h1>
+      <p class="panel__subtitulo">The Olympus Gym</p>
+    </header>
+
+    <div class="cards-container">
+      <section class="card card--count">
+        <header class="card__header card__header--plan">
+          <h2 class="card__title">
+            <span class="card__title-text">Standard users</span>
+          </h2>
+        </header>
+        <div class="card__body">
+          <p class="card__info card__info--count">{{ standard_users_count }}</p>
+        </div>
+      </section>
+
+      <section class="card card--count">
+        <header class="card__header card__header--plan">
+          <h2 class="card__title">
+            <span class="card__title-text">Premium users</span>
+          </h2>
+        </header>
+        <div class="card__body">
+          <p class="card__info card__info--count">{{ premium_users_count }}</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel__tarjeta tarjeta">
+      <h2 class="tarjeta__titulo">Users</h2>
+
+      <div class="tarjeta__tabla-contenedor">
+        <table class="tabla">
+          <thead class="tabla__encabezado">
+            <tr class="tabla__fila">
+              <th class="tablacelda tablacelda--encabezado">ID</th>
+              <th class="tablacelda tablacelda--encabezado">Name</th>
+              <th class="tablacelda tablacelda--encabezado">Email</th>
+              <th class="tablacelda tablacelda--encabezado">Plan</th>
+            </tr>
+          </thead>
+          <tbody class="tabla__cuerpo">
+            {% for profile in profiles %} {% if not profile.is_superuser %}
+            <tr class="tabla__fila">
+              <td class="tabla__celda">{{ profile.id }}</td>
+              <td class="tablacelda tablacelda--negrita">
+                {{ profile.username }}
+              </td>
+              <td class="tabla__celda">{{ profile.email }}</td>
+              <td class="tabla__celda">
+                <span class="etiqueta etiqueta--{{ profile.plan.name|lower }}"
+                  >{{ profile.plan.name }}</span
+                >
+              </td>
+              <td class="tabla__celda">
+                <button
+                  class="button button--delete-user clickable button--danger"
+                  data-user-id="{{ profile.id }}"
+                >
+                  Delete user
+                </button>
+              </td>
+            </tr>
+
+            {% endif %} {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="panel__acciones">
+      <a href="{% url 'create_invitation' %}">
+        <button class="button clickable button--cta">
+          <span class="boton__icono">+</span>
+          Invite New User
+        </button>
+      </a>
+    </div>
+  </div>
+</main>
+<script src="{% static 'the_olympus/scripts/handleDeleteUserModal.js' %}"></script>
+{% endblock %}
