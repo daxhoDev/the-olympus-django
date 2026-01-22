@@ -33,7 +33,7 @@ class Payment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Payment of ${self.amount} by {self.profile.username} on {self.payment_date}'
+        return f'Payment of ${self.amount} by {self.profile.username} on {self.date}'
     
 class Invitation(models.Model):
     email = models.EmailField()
