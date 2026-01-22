@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
-from the_olympus.models import Profile, Plan, Invitation
+from the_olympus.models import Profile, Plan, Invitation, Payment
 
 class ProfileCreationForm(UserCreationForm):
 	email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'register-form__input'}))
@@ -69,6 +69,15 @@ class ProfileCreationForm(UserCreationForm):
 		
 		if commit:
 			user.save()
+			
+			# Crear un Payment automáticamente si el usuario tiene un plan
+			if user.plan:
+				Payment.objects.create(
+					profile=user,
+					plan=user.plan,
+					amount=user.plan.price
+				)
+			
 			# Marcar la invitación como inactiva si se usó un token
 			if self.token:
 				try:
