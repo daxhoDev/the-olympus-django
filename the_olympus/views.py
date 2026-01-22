@@ -43,6 +43,39 @@ def user_dashboard(request):
     context = {'payments': payments}
     return render(request, 'the_olympus/user_dashboard.html', context)
 
+@login_required
+def change_plan(request):
+    """
+    Permite al usuario cambiar su plan.
+    GET: Muestra los planes disponibles
+    POST: Actualiza el plan del usuario y crea un registro de pago
+    """
+    plans = Plan.objects.all()
+    
+    if request.method == 'POST':
+        plan_id = request.POST.get('plan_id')
+        if plan_id:
+            new_plan = get_object_or_404(Plan, id=plan_id)
+            
+            # Actualizar el plan del usuario
+            request.user.plan = new_plan
+            request.user.save()
+            
+            # Crear registro de pago
+            Payment.objects.create(
+                profile=request.user,
+                plan=new_plan,
+                amount=new_plan.price
+            )
+            
+            return redirect('dashboard')
+    
+    context = {
+        'plans': plans,
+        'current_plan': request.user.plan
+    }
+    return render(request, 'the_olympus/change_plan.html', context)
+
 class ProfilesListView(ListView):
     model = Profile
     template_name = 'the_olympus/admin_dashboard.html'

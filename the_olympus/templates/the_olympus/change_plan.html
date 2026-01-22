@@ -1,9 +1,7 @@
 {% extends "the_olympus/_base.html" %} {% load static %} {% block content %}
-<!---->
-{% if user.is_authenticated %}
 
 <main class="panel-container">
-  <div class="cards-container">
+  <div class="cards-container" style="justify-content: center;">
     <section class="card card--plan">
       <header class="card__header">
         {% if user.plan.name == "Premium" %}
@@ -54,43 +52,52 @@
           You are currently subscribed to the {{ user.plan.name }} plan.
         </p>
       </div>
-      <footer class="card__footer">
-        <a href="{% url 'change_plan' %}" class="card__button button button--secondary clickable">
-          Change Plan
-        </a>
-      </footer>
     </section>
   </div>
 
-  <section class="panel__tarjeta tarjeta">
-    <h2 class="tarjeta__titulo">Payments History</h2>
+  <section class="plans" id="plans">
+  <h2 class="section__title">Select Plan</h2>
+  <div class="plans__plans-container">
+    {% for plan in plans %}
+    <div class="plans-container__plan-card">
+      {% if plan.is_premium %}
+      <span class="plan-card__badge">Best Value</span>
+      {% endif %}
 
-    <div class="tarjeta__tabla-contenedor">
-      <table class="tabla">
-        <thead class="tabla__encabezado">
-          <tr class="tabla__fila">
-            <th class="tablacelda tablacelda--encabezado">ID</th>
-            <th class="tablacelda tablacelda--encabezado">Plan</th>
-            <th class="tablacelda tablacelda--encabezado">Price</th>
-            <th class="tablacelda tablacelda--encabezado">Date</th>
-          </tr>
-        </thead>
-        <tbody class="tabla__cuerpo">
-          {% for payment in payments %}
-          <tr class="tabla__fila">
-            <td class="tabla__celda">{{ payment.id }}</td>
-            <td class="tablacelda tablacelda--negrita">
-              {{ payment.plan.name }}
-            </td>
-            <td class="tabla__celda">{{ payment.amount }}</td>
-            <td class="tabla__celda">{{ payment.date }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <h3 class="plan-card__title">{{ plan.name }}</h3>
+      <p class="plan-card__price">
+        <span class="price__number">${{ plan.price }}</span> /month
+      </p>
+      <form method="post">
+            {% csrf_token %}
+          {% if current_plan and plan.id == current_plan.id %}
+          <button type="button" class="button button--secondary" disabled style="width: 100%; opacity: 0.6; cursor: not-allowed;">
+              Current Plan
+            </button>
+            {% else %}
+            <button type="submit" name="plan_id" value="{{ plan.id }}" class="button button--primary clickable" style="width: 100%;">
+              Select Plan
+            </button>
+            {% endif %}
+        </form>
+      <ul class="plan-card__features">
+        {% for plan_feature in plan.features %}
+        <li class="plan-card__feature">
+          <span><img src="{% static 'the_olympus/icons/check.svg' %}" /></span>
+          <span>{{ plan_feature }}</span>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-  </section>
+    {% endfor %}
+  </div>
+  <div style="text-align: center; margin-top: 2rem;">
+      <a href="{% url 'dashboard' %}" class="button button--secondary clickable">
+        Back to Dashboard
+      </a>
+    </div>
+</section>
+
 </main>
-{% endif %}
-<!---->
+
 {% endblock %}
